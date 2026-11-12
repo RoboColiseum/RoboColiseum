@@ -1,0 +1,13 @@
+{
+  "source": "https://robocoliseum.ai/",
+  "credit": "RoboColiseum",
+  "purpose": "Original RoboColiseum logo used by the repository README.",
+  "retrieved_on": "2026-11-12",
+  "files": [
+    {
+      "path": "assets/readme/robocoliseum-logo.png",
+      "source_url": "https://sim-challenge-frontend.ks3-cn-beijing.ksyuncs.com/img/ui/header-logo-light-dcccb361c3.png",
+      "sha256": "dcccb361c391225b385e66e12524f73f16e3f21d5f46a27f66bcd9a2202554f2"
+    }
+  ]
+}

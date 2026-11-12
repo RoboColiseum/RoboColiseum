@@ -1,0 +1,24 @@
+{
+  "maintainer": "RoboColiseum",
+  "created_on": "2026-11-12",
+  "source_repository": "https://github.com/AgibotTech/genie_sim",
+  "source_revision": "0c00b21ffebc08b823b04ce770634e41c2a6dae0",
+  "note": "Original RoboColiseum skill authored against the inspected checkout contracts below. Read the user checkout docs at execution time; uncommitted source changes and release defaults may differ. This is not part of the website archive.",
+  "source_contracts": {
+    "source/geniesim_cli/AGENTS.md": "179537e3d99eaa31f4abc7620478789367c5ce0a1cbeaaef65a2338c2c740898",
+    "source/geniesim_cli/pyproject.toml": "134e83b921fe63bd41b10356ef830c60bcf240ddad2fa9bebaaf748e25d15359",
+    "source/geniesim_cli/docs/assets-download.md": "f57dd4b0b79698394a222d79d9a52c651769d0d4cf734cb6894fd087da47ffd2",
+    "docker/README.md": "b8e9f6bcf8243c39dce8a9e83c1eb5fb7c4dca8539a1504959326d1ce0baa23e",
+    "docker/entrypoint.sh": "9a6aa398b88c7acdeffc9f558bea8552458a4aebc740544e560823661bb27855",
+    "source/geniesim_benchmark/benchmark_test_docs.md": "1c095f217c3956df0f6c0d3cf996d24011e70a1c8d6ce4903338eb6ba592b3ef",
+    "source/geniesim_benchmark/skills/run-benchmark/SKILL.md": "4b33d72f72cf713870c1a6d5d1501e090e7daae9372b458ebc0b59e0052fa24c"
+  },
+  "files": {
+    "local-benchmark/SKILL.md": {
+      "local_sha256": "ffc91290c9b96e83851fa00bee947da1409c7552c3ef8b16810c6abd1068eb26"
+    },
+    "local-benchmark/scripts/preflight.py": {
+      "local_sha256": "8d23cb9e0929ab11d5d21eb63aaac0005c15d7d3dd1e150557b2d268f1f50816"
+    }
+  }
+}

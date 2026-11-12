@@ -1,0 +1,297 @@
+{
+  "source": "User-provided logo files in assets/logo",
+  "order": "Left to right, top to bottom, following the user-provided affiliation reference",
+  "presentation": "SVG viewports select the horizontal wordmark where an input contains multiple variants. Original PNG files are unchanged.",
+  "rows": [
+    [
+      {
+        "name": "Beihang University",
+        "file": "6ed70599-e8e2-4de4-956c-a9c2e8f2a7d6.png",
+        "sha256": "2288126fafa2b03d95996e22cd96170eecfa769791b42e127553b03ac683ff38",
+        "viewport": [
+          225,
+          120,
+          600,
+          127
+        ]
+      },
+      {
+        "name": "Beijing Institute of Technology",
+        "file": "0a372ce1-dc29-42f8-83bd-e02b1dbaff0f.png",
+        "sha256": "f556e6a040f2eb06be1d60c978d8b612f82f94bbc501eca32b2962913bf29169",
+        "viewport": [
+          283,
+          144,
+          507,
+          110
+        ]
+      },
+      {
+        "name": "Fudan University",
+        "file": "f063da10-92df-43c3-9e69-fe3a2fb46711.png",
+        "sha256": "6a340f8ed4b8179c4c2567f25b82eca1a7c684f1102e31ab264687bf73409dd6",
+        "viewport": [
+          0,
+          0,
+          493,
+          178
+        ]
+      },
+      {
+        "name": "Harbin Institute of Technology",
+        "file": "1c7050b5-cf83-42fd-8c56-f968723de437.png",
+        "sha256": "5070a0b4153effc0061e0104bb33eb25018abcb1740bbeb62038fb2d955cdb6a",
+        "viewport": [
+          225,
+          151,
+          600,
+          125
+        ]
+      }
+    ],
+    [
+      {
+        "name": "Hugging Face",
+        "file": "ffae6053-2781-4836-bd17-a07a2c7785ab.png",
+        "sha256": "1d91c267035cc7e443a22139bdcfa31e62d649a134f6e1c0c51bbb4195a30a7f",
+        "viewport": [
+          0,
+          0,
+          1280,
+          340
+        ]
+      },
+      {
+        "name": "Imperial College London",
+        "file": "79305527-b639-4743-9339-6dca7511ec65.png",
+        "sha256": "ad77c2589a937f76c9e2d1ae058b2f231e59a5e21b48e63d0ba73234a1c3d243",
+        "viewport": [
+          0,
+          0,
+          1920,
+          211
+        ]
+      },
+      {
+        "name": "Karlsruhe Institute of Technology",
+        "file": "85a23500-98ff-4d5e-8a80-159087e2913a.png",
+        "sha256": "983782b615aa15fc2d276686051372758af0166582c2a7a4c875b1f9e566b0f1",
+        "viewport": [
+          110,
+          40,
+          975,
+          455
+        ]
+      },
+      {
+        "name": "ManiFormer",
+        "file": "c4bca6fb-9927-4c9c-a41f-c3cb48be055d.png",
+        "sha256": "665284b596cf3e4c719df2ba3e34f12c9858198c50589836668a15d1f131c609",
+        "viewport": [
+          0,
+          0,
+          1280,
+          331
+        ]
+      }
+    ],
+    [
+      {
+        "name": "NVIDIA",
+        "file": "70527748-1d95-48c6-9dc5-3b951bc29607.png",
+        "sha256": "c46a2b3055bb235de272eae780a9cbbb4bcaf521a666026ebe2681a89748024d",
+        "viewport": [
+          125,
+          256,
+          1000,
+          186
+        ]
+      },
+      {
+        "name": "Peking University",
+        "file": "570a1242-b872-4ee0-9a71-1c69c9af2257.png",
+        "sha256": "2409e59d14e904616792c9951af7af5fa8ecb06c09b9083fb759239cded96752",
+        "viewport": [
+          0,
+          0,
+          394,
+          111
+        ]
+      },
+      {
+        "name": "Shanghai Jiao Tong University",
+        "file": "5a58b4e0-419e-490c-9bbd-e1296eb237a3.png",
+        "sha256": "1664da254b78c6e60ea05ef3f4523e27dc883f459db3509825d401fde3a93146",
+        "viewport": [
+          0,
+          0,
+          601,
+          160
+        ]
+      },
+      {
+        "name": "Stanford University",
+        "file": "89f20af4-28e0-4a4c-87ff-700caa6cc7fa.png",
+        "sha256": "f9d649be1178bcff0795b24399a8383e7b229108f4b1b4c6478117a2ba72c45a",
+        "viewport": [
+          0,
+          0,
+          485,
+          160
+        ]
+      }
+    ],
+    [
+      {
+        "name": "The Chinese University of Hong Kong",
+        "file": "b900e433-a07c-4f86-9351-6b280af2e200.png",
+        "sha256": "7e8a428c3c581b68f74bf05ba1f6c2cdddd5ae7f0ff2ddda229916749e091ae2",
+        "viewport": [
+          0,
+          0,
+          899,
+          160
+        ]
+      },
+      {
+        "name": "The Hong Kong University of Science and Technology (Guangzhou)",
+        "file": "cccb8b8c-9320-4b7e-8554-b71562e45ce9.png",
+        "sha256": "d37feca5d536eaf9229b2983183c13905dde81a4718adcaa31139c3f8c07a0bd",
+        "viewport": [
+          0,
+          0,
+          609,
+          160
+        ]
+      },
+      {
+        "name": "The University of Hong Kong",
+        "file": "bfa21956-3bde-4b29-9176-06f38970539d.png",
+        "sha256": "d6b6088a31f20278a927764ebf87b183dadffe40836e92eb4d7935856ccb4d5b",
+        "viewport": [
+          118,
+          21,
+          379,
+          73
+        ]
+      },
+      {
+        "name": "Tongji University",
+        "file": "10a7f43f-e7dc-4eba-894e-82b88dc415ff.png",
+        "sha256": "8f3c0e521e979db043f974cf0bd77b8737faa507955123ca8ec4ef3cc50f5cf9",
+        "viewport": [
+          117,
+          305,
+          969,
+          237
+        ]
+      }
+    ],
+    [
+      {
+        "name": "Tsinghua University",
+        "file": "6fd06e84-94f6-4f00-b54b-123cc0820150.png",
+        "sha256": "d688bfadbd1f83b4251cc720b27392faa31f13a6413d82e31c351aa77e060305",
+        "viewport": [
+          0,
+          0,
+          557,
+          160
+        ]
+      },
+      {
+        "name": "University of Illinois Urbana-Champaign",
+        "file": "6d5c643c-873f-411d-a243-6cae7125faba.png",
+        "sha256": "abad7b965525b5055aef5601289f68c152fefda7c9730144d1f20ef2d78aac4d",
+        "viewport": [
+          0,
+          0,
+          559,
+          145
+        ]
+      },
+      {
+        "name": "University of Pennsylvania",
+        "file": "9e76f646-f333-436b-8f62-95a84e8889f5.png",
+        "sha256": "73827e48ce1f1d5bf41e5104c59ba1e3b132a2374bca6373f486bf5515ed09df",
+        "viewport": [
+          77,
+          246,
+          1132,
+          355
+        ]
+      },
+      {
+        "name": "Zhejiang University",
+        "file": "5628d2e4-063b-4c0f-b207-a0de902c0ad3.png",
+        "sha256": "18b50d046ffe8d265fef04605988861056d7a00be95d0adc0b75378d55a4a679",
+        "viewport": [
+          0,
+          0,
+          581,
+          160
+        ]
+      }
+    ]
+  ],
+  "layout": {
+    "canvas_width": 1120,
+    "columns": 4,
+    "target_logo_height": 60,
+    "max_logo_width": 250,
+    "row_heights": [
+      92,
+      92,
+      92,
+      92,
+      92
+    ],
+    "row_gaps": [
+      24,
+      24,
+      24,
+      24,
+      24
+    ],
+    "row_max_heights": [
+      60,
+      60,
+      60,
+      60,
+      60
+    ],
+    "slot_widths": [
+      [
+        250,
+        250,
+        250,
+        250
+      ],
+      [
+        250,
+        250,
+        250,
+        250
+      ],
+      [
+        250,
+        250,
+        250,
+        250
+      ],
+      [
+        250,
+        250,
+        250,
+        250
+      ],
+      [
+        250,
+        250,
+        250,
+        250
+      ]
+    ],
+    "note": "Five rows of four preserve the original left-to-right, top-to-bottom sequence. Every logo fits a common 250-by-60-unit box, preserving its original proportions."
+  }
+}

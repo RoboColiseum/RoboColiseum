@@ -1,0 +1,19 @@
+# Local credentials and participation state
+.env
+.env.*
+!.env.example
+.simubotix-challenge.env
+
+# Downloaded data, weights, and generated results
+/data/
+/datasets/
+/checkpoints/
+/outputs/
+/logs/
+
+# Local environments and OS metadata
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+__MACOSX/

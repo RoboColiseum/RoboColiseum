@@ -1,0 +1,86 @@
+{
+  "source_page": "https://robocoliseum.ai/usage",
+  "archive_url": "https://sim-challenge-frontend.ks3-cn-beijing.ksyuncs.com/downloads/skills.zip",
+  "retrieved_on": "2026-11-12",
+  "archive_sha256": "6ab7e9f467db77b0081ba143316636741ea53051d4f78b0727b1673c0a80c036",
+  "excluded": [
+    "__MACOSX/"
+  ],
+  "local_changes": [
+    {
+      "path": "README.md",
+      "reason": "Preserve existing state when challenge_save_var saves a new key; replace truncating install with private touch/chmod initialization. Remove a trailing blank line. Add the locally maintained benchmark skill to the index and distinguish its environment from hosted credentials."
+    },
+    {
+      "path": "challenge-diagnose-connection/SKILL.md",
+      "reason": "Use a folded YAML scalar for the description so a colon-space in the text parses correctly; preserve the workflow body."
+    },
+    {
+      "path": "challenge-help/SKILL.md",
+      "reason": "Route local Genie Sim environment requests to the repository-maintained local-benchmark skill before the hosted submission flow."
+    }
+  ],
+  "files": {
+    "README.md": {
+      "upstream_sha256": "1549bfc7cf2df11cb58ce16b3e4f68674ced49453fd4172996ea5e90979c1289",
+      "local_sha256": "387ef24e979b11042ee503f1443befe5a493aa7ad1e6d60c9f7e942cbad3aad9"
+    },
+    "challenge-help/SKILL.md": {
+      "upstream_sha256": "1d8d455181cb2e0c0baf04aae61a7fc72608e3b4881b0d3c37717fd8fa78542e",
+      "local_sha256": "1f7b60d582930da55ab06300cb66f6d531438bf2d743279537d697e6825649b8"
+    },
+    "challenge-inference-protocol/SKILL.md": {
+      "upstream_sha256": "5f999e4e7006c0b69469840a70859c56af5c3b99fa800c6388520c27d3dcb819",
+      "local_sha256": "5f999e4e7006c0b69469840a70859c56af5c3b99fa800c6388520c27d3dcb819"
+    },
+    "challenge-poll-result/SKILL.md": {
+      "upstream_sha256": "32629207a13da2beeecc4d26a180ad8d80f28dfb2d2b86799224834034a20514",
+      "local_sha256": "32629207a13da2beeecc4d26a180ad8d80f28dfb2d2b86799224834034a20514"
+    },
+    "challenge-download-datasets/SKILL.md": {
+      "upstream_sha256": "e0de9d1ea83525361e4ca2391d54e3c52ab5a4e5e36e2b86dd2c52a1c9a97a61",
+      "local_sha256": "e0de9d1ea83525361e4ca2391d54e3c52ab5a4e5e36e2b86dd2c52a1c9a97a61"
+    },
+    "challenge-baseline-model/SKILL.md": {
+      "upstream_sha256": "f31400b1b7a24f3a7e66c4b1cf6c9a4d06834f85f451c109bd4ecd5114b7c877",
+      "local_sha256": "f31400b1b7a24f3a7e66c4b1cf6c9a4d06834f85f451c109bd4ecd5114b7c877"
+    },
+    "challenge-diagnose-connection/SKILL.md": {
+      "upstream_sha256": "3ecea9100fbbd668fa83869ee7a5d543d5cf7c3f1b4729062a9759228383a655",
+      "local_sha256": "97e9d45dfb6fd0b9cfae536793be64f09309a8e9fa69debe0deb7b5bbf984106"
+    },
+    "challenge-ranking/SKILL.md": {
+      "upstream_sha256": "d7c8f2a52f8dc1941606b61cf20b0ac49f93214bd63b7b1eed0e9079aa464e9f",
+      "local_sha256": "d7c8f2a52f8dc1941606b61cf20b0ac49f93214bd63b7b1eed0e9079aa464e9f"
+    },
+    "challenge-run-agent/SKILL.md": {
+      "upstream_sha256": "f81299cd5d9cde92aed61702a7fe43ce1164d2cfa71b762d1cc163ea2f0cd02d",
+      "local_sha256": "f81299cd5d9cde92aed61702a7fe43ce1164d2cfa71b762d1cc163ea2f0cd02d"
+    },
+    "challenge-submit-job/SKILL.md": {
+      "upstream_sha256": "c15396bd4128082a0916b7822059f9f03ee08208f897a2d95dc67993ffdb45ee",
+      "local_sha256": "c15396bd4128082a0916b7822059f9f03ee08208f897a2d95dc67993ffdb45ee"
+    },
+    "challenge-troubleshoot/SKILL.md": {
+      "upstream_sha256": "e3ce23745bd9f13dd07208c5f54b9764fb57fa01c55a53ae638e9d49f3540012",
+      "local_sha256": "e3ce23745bd9f13dd07208c5f54b9764fb57fa01c55a53ae638e9d49f3540012"
+    },
+    "challenge-login/SKILL.md": {
+      "upstream_sha256": "b243107c3d9e72f5f1d138a900dc0b6bb3c093b50160e3d64dc1e4710529e8ff",
+      "local_sha256": "b243107c3d9e72f5f1d138a900dc0b6bb3c093b50160e3d64dc1e4710529e8ff"
+    },
+    "challenge-download-datasets/scripts/download_dataset.sh": {
+      "upstream_sha256": "74a7adafe2fe07c45717610746075ce0a955dec15cd049b4d6c93d38b5bfa615",
+      "local_sha256": "74a7adafe2fe07c45717610746075ce0a955dec15cd049b4d6c93d38b5bfa615"
+    },
+    "challenge-baseline-model/scripts/download_checkpoint.sh": {
+      "upstream_sha256": "c14ee00e80eb2cdedc76ffbc43fdd43d6ab90f501d4a8b2052558ec4436a57b7",
+      "local_sha256": "c14ee00e80eb2cdedc76ffbc43fdd43d6ab90f501d4a8b2052558ec4436a57b7"
+    },
+    "challenge-diagnose-connection/scripts/probe_gateway.sh": {
+      "upstream_sha256": "e4c26ce62564a5fe1809caa59213aaa3ff193bec3b52b2ed1a90a59ef9a8c748",
+      "local_sha256": "e4c26ce62564a5fe1809caa59213aaa3ff193bec3b52b2ed1a90a59ef9a8c748"
+    }
+  },
+  "last_verified_at": "2026-11-12T05:46:34Z"
+}
