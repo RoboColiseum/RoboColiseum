@@ -1,0 +1,114 @@
+AGENTS.md
+  h_e83ad249497173 5-6,41,73-75,77,122-123
+docs/getting-started.md
+  h_e83ad249497173 16
+docs/project-page.md
+  h_e83ad249497173 20-22,41-43,121-122,133-141,152-154
+scripts/build_project_page.py
+  h_e83ad249497173 42-44,62-66,71
+scripts/check_project_page.py
+  h_e83ad249497173 122,141-142,147-149,158
+site/index.html
+  h_e83ad249497173 22,32,48,57-58,62-64,111,113-116,127,146
+site/main.js
+  h_e83ad249497173 109
+site/public/AGENTS.md
+  h_e83ad249497173 1-23
+site/public/README.md
+  h_e83ad249497173 1-47
+---
+{
+  "schema_version": "authorship/3.1.0",
+  "tlab_version": "0.14.2",
+  "base_commit_sha": "82a7b0a9e7eddff7abe56c4f3c8f26353532dba6",
+  "prompts": {},
+  "humans": {
+    "h_e83ad249497173": {
+      "author": "jonasdee <yangwendisheng@agibot.com>"
+    }
+  },
+  "changes": [
+    {
+      "new_path": "site/public/AGENTS.md",
+      "additions": {
+        "human": 23
+      }
+    },
+    {
+      "new_path": "site/public/README.md",
+      "additions": {
+        "human": 47
+      }
+    },
+    {
+      "old_path": "AGENTS.md",
+      "new_path": "AGENTS.md",
+      "additions": {
+        "human": 9
+      },
+      "deletions": {
+        "human": 5
+      }
+    },
+    {
+      "old_path": "docs/getting-started.md",
+      "new_path": "docs/getting-started.md",
+      "additions": {
+        "human": 1
+      },
+      "deletions": {
+        "human": 1
+      }
+    },
+    {
+      "old_path": "docs/project-page.md",
+      "new_path": "docs/project-page.md",
+      "additions": {
+        "human": 20
+      },
+      "deletions": {
+        "human": 8
+      }
+    },
+    {
+      "old_path": "scripts/build_project_page.py",
+      "new_path": "scripts/build_project_page.py",
+      "additions": {
+        "human": 9
+      },
+      "deletions": {
+        "human": 1
+      }
+    },
+    {
+      "old_path": "scripts/check_project_page.py",
+      "new_path": "scripts/check_project_page.py",
+      "additions": {
+        "human": 7
+      },
+      "deletions": {
+        "human": 4
+      }
+    },
+    {
+      "old_path": "site/index.html",
+      "new_path": "site/index.html",
+      "additions": {
+        "human": 15
+      },
+      "deletions": {
+        "human": 15
+      }
+    },
+    {
+      "old_path": "site/main.js",
+      "new_path": "site/main.js",
+      "additions": {
+        "human": 1
+      },
+      "deletions": {
+        "human": 1
+      }
+    }
+  ]
+}
