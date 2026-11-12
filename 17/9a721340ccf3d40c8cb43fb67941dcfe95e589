@@ -1,0 +1,59 @@
+README.md
+  h_e83ad249497173 11-12,43-50
+docs/project-page.md
+  h_e83ad249497173 74-79
+site/index.html
+  h_e83ad249497173 112,114-141
+site/styles.css
+  h_e83ad249497173 370,536,611,703,792-794,796,908,924-1036
+---
+{
+  "schema_version": "authorship/3.1.0",
+  "tlab_version": "0.14.2",
+  "base_commit_sha": "179a721340ccf3d40c8cb43fb67941dcfe95e589",
+  "prompts": {},
+  "humans": {
+    "h_e83ad249497173": {
+      "author": "jonasdee <yangwendisheng@agibot.com>"
+    }
+  },
+  "changes": [
+    {
+      "old_path": "README.md",
+      "new_path": "README.md",
+      "additions": {
+        "human": 10
+      },
+      "deletions": {
+        "human": 6
+      }
+    },
+    {
+      "old_path": "docs/project-page.md",
+      "new_path": "docs/project-page.md",
+      "additions": {
+        "human": 6
+      }
+    },
+    {
+      "old_path": "site/index.html",
+      "new_path": "site/index.html",
+      "additions": {
+        "human": 29
+      },
+      "deletions": {
+        "human": 4
+      }
+    },
+    {
+      "old_path": "site/styles.css",
+      "new_path": "site/styles.css",
+      "additions": {
+        "human": 122
+      },
+      "deletions": {
+        "human": 81
+      }
+    }
+  ]
+}
