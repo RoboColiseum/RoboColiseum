@@ -1,0 +1,318 @@
+.gitignore
+  h_e83ad249497173 1-22
+AGENTS.md
+  h_e83ad249497173 1-149
+CONTRIBUTING.md
+  h_e83ad249497173 1-19
+README.md
+  h_e83ad249497173 1-135
+docs/brand-assets.json
+  h_e83ad249497173 1-25
+docs/evaluation-media.json
+  h_e83ad249497173 1-110
+docs/getting-started.md
+  h_e83ad249497173 1-86
+docs/project-page.md
+  h_e83ad249497173 1-115
+docs/skills-maintenance.md
+  h_e83ad249497173 1-147
+references.bib
+  h_e83ad249497173 1-23
+scripts/build_project_page.py
+  h_e83ad249497173 1-70
+scripts/check_project_page.py
+  h_e83ad249497173 1-101
+scripts/tests/test_local_benchmark_preflight.py
+  h_e83ad249497173 1-70
+site/ai-guide.json
+  h_e83ad249497173 1-158
+site/citations.json
+  h_e83ad249497173 1-4
+site/index.html
+  h_e83ad249497173 1-142
+site/main.js
+  h_e83ad249497173 1-124
+site/media.json
+  h_e83ad249497173 1-14
+site/styles.css
+  h_e83ad249497173 1-900
+skills/LOCAL.json
+  h_e83ad249497173 1-24
+skills/README.md
+  h_e83ad249497173 1-154
+skills/UPSTREAM.json
+  h_e83ad249497173 1-86
+skills/challenge-baseline-model/SKILL.md
+  h_e83ad249497173 1-209
+skills/challenge-baseline-model/scripts/download_checkpoint.sh
+  h_e83ad249497173 1-113
+skills/challenge-diagnose-connection/SKILL.md
+  h_e83ad249497173 1-184
+skills/challenge-diagnose-connection/scripts/probe_gateway.sh
+  h_e83ad249497173 1-63
+skills/challenge-download-datasets/SKILL.md
+  h_e83ad249497173 1-89
+skills/challenge-download-datasets/scripts/download_dataset.sh
+  h_e83ad249497173 1-131
+skills/challenge-help/SKILL.md
+  h_e83ad249497173 1-100
+skills/challenge-inference-protocol/SKILL.md
+  h_e83ad249497173 1-148
+skills/challenge-login/SKILL.md
+  h_e83ad249497173 1-146
+skills/challenge-poll-result/SKILL.md
+  h_e83ad249497173 1-285
+skills/challenge-ranking/SKILL.md
+  h_e83ad249497173 1-95
+skills/challenge-run-agent/SKILL.md
+  h_e83ad249497173 1-314
+skills/challenge-submit-job/SKILL.md
+  h_e83ad249497173 1-178
+skills/challenge-troubleshoot/SKILL.md
+  h_e83ad249497173 1-109
+skills/local-benchmark/SKILL.md
+  h_e83ad249497173 1-218
+skills/local-benchmark/scripts/preflight.py
+  h_e83ad249497173 1-86
+---
+{
+  "schema_version": "authorship/3.1.0",
+  "tlab_version": "0.14.2",
+  "base_commit_sha": "09fa788875e4d4d749f59f339a7f70db83268e7d",
+  "prompts": {},
+  "humans": {
+    "h_e83ad249497173": {
+      "author": "jonasdee <yangwendisheng@agibot.com>"
+    }
+  },
+  "changes": [
+    {
+      "new_path": ".gitignore",
+      "additions": {
+        "human": 22
+      }
+    },
+    {
+      "new_path": "AGENTS.md",
+      "additions": {
+        "human": 149
+      }
+    },
+    {
+      "new_path": "CONTRIBUTING.md",
+      "additions": {
+        "human": 19
+      }
+    },
+    {
+      "new_path": "README.md",
+      "additions": {
+        "human": 135
+      }
+    },
+    {
+      "new_path": "docs/brand-assets.json",
+      "additions": {
+        "human": 25
+      }
+    },
+    {
+      "new_path": "docs/evaluation-media.json",
+      "additions": {
+        "human": 110
+      }
+    },
+    {
+      "new_path": "docs/getting-started.md",
+      "additions": {
+        "human": 86
+      }
+    },
+    {
+      "new_path": "docs/project-page.md",
+      "additions": {
+        "human": 115
+      }
+    },
+    {
+      "new_path": "docs/skills-maintenance.md",
+      "additions": {
+        "human": 147
+      }
+    },
+    {
+      "new_path": "references.bib",
+      "additions": {
+        "human": 23
+      }
+    },
+    {
+      "new_path": "scripts/build_project_page.py",
+      "additions": {
+        "human": 70
+      }
+    },
+    {
+      "new_path": "scripts/check_project_page.py",
+      "additions": {
+        "human": 101
+      }
+    },
+    {
+      "new_path": "scripts/tests/test_local_benchmark_preflight.py",
+      "additions": {
+        "human": 70
+      }
+    },
+    {
+      "new_path": "site/ai-guide.json",
+      "additions": {
+        "human": 158
+      }
+    },
+    {
+      "new_path": "site/citations.json",
+      "additions": {
+        "human": 4
+      }
+    },
+    {
+      "new_path": "site/index.html",
+      "additions": {
+        "human": 142
+      }
+    },
+    {
+      "new_path": "site/main.js",
+      "additions": {
+        "human": 124
+      }
+    },
+    {
+      "new_path": "site/media.json",
+      "additions": {
+        "human": 14
+      }
+    },
+    {
+      "new_path": "site/styles.css",
+      "additions": {
+        "human": 900
+      }
+    },
+    {
+      "new_path": "skills/LOCAL.json",
+      "additions": {
+        "human": 24
+      }
+    },
+    {
+      "new_path": "skills/README.md",
+      "additions": {
+        "human": 154
+      }
+    },
+    {
+      "new_path": "skills/UPSTREAM.json",
+      "additions": {
+        "human": 86
+      }
+    },
+    {
+      "new_path": "skills/challenge-baseline-model/SKILL.md",
+      "additions": {
+        "human": 209
+      }
+    },
+    {
+      "new_path": "skills/challenge-baseline-model/scripts/download_checkpoint.sh",
+      "additions": {
+        "human": 113
+      }
+    },
+    {
+      "new_path": "skills/challenge-diagnose-connection/SKILL.md",
+      "additions": {
+        "human": 184
+      }
+    },
+    {
+      "new_path": "skills/challenge-diagnose-connection/scripts/probe_gateway.sh",
+      "additions": {
+        "human": 63
+      }
+    },
+    {
+      "new_path": "skills/challenge-download-datasets/SKILL.md",
+      "additions": {
+        "human": 89
+      }
+    },
+    {
+      "new_path": "skills/challenge-download-datasets/scripts/download_dataset.sh",
+      "additions": {
+        "human": 131
+      }
+    },
+    {
+      "new_path": "skills/challenge-help/SKILL.md",
+      "additions": {
+        "human": 100
+      }
+    },
+    {
+      "new_path": "skills/challenge-inference-protocol/SKILL.md",
+      "additions": {
+        "human": 148
+      }
+    },
+    {
+      "new_path": "skills/challenge-login/SKILL.md",
+      "additions": {
+        "human": 146
+      }
+    },
+    {
+      "new_path": "skills/challenge-poll-result/SKILL.md",
+      "additions": {
+        "human": 285
+      }
+    },
+    {
+      "new_path": "skills/challenge-ranking/SKILL.md",
+      "additions": {
+        "human": 95
+      }
+    },
+    {
+      "new_path": "skills/challenge-run-agent/SKILL.md",
+      "additions": {
+        "human": 314
+      }
+    },
+    {
+      "new_path": "skills/challenge-submit-job/SKILL.md",
+      "additions": {
+        "human": 178
+      }
+    },
+    {
+      "new_path": "skills/challenge-troubleshoot/SKILL.md",
+      "additions": {
+        "human": 109
+      }
+    },
+    {
+      "new_path": "skills/local-benchmark/SKILL.md",
+      "additions": {
+        "human": 218
+      }
+    },
+    {
+      "new_path": "skills/local-benchmark/scripts/preflight.py",
+      "additions": {
+        "human": 86
+      }
+    }
+  ]
+}
