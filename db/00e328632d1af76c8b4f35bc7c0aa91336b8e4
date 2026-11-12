@@ -1,0 +1,23 @@
+docs/project-page.md
+  h_e83ad249497173 131-146
+---
+{
+  "schema_version": "authorship/3.1.0",
+  "tlab_version": "0.14.2",
+  "base_commit_sha": "db00e328632d1af76c8b4f35bc7c0aa91336b8e4",
+  "prompts": {},
+  "humans": {
+    "h_e83ad249497173": {
+      "author": "jonasdee <yangwendisheng@agibot.com>"
+    }
+  },
+  "changes": [
+    {
+      "old_path": "docs/project-page.md",
+      "new_path": "docs/project-page.md",
+      "additions": {
+        "human": 16
+      }
+    }
+  ]
+}
