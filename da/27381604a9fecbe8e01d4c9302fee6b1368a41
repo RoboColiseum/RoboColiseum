@@ -1,0 +1,165 @@
+AGENTS.md
+  h_e83ad249497173 5-13,18-25,27-28,30,33-39,41-49,51-52,54,56-60,62-63,66,69-75
+README.md
+  h_e83ad249497173 2,46,49-51,108,130,137,140
+skills/MAINTENANCE.md
+  h_e83ad249497173 85,136-143,150-167
+---
+{
+  "schema_version": "authorship/3.1.0",
+  "tlab_version": "0.14.2",
+  "base_commit_sha": "da27381604a9fecbe8e01d4c9302fee6b1368a41",
+  "prompts": {},
+  "humans": {
+    "h_e83ad249497173": {
+      "author": "jonasdee <yangwendisheng@agibot.com>"
+    }
+  },
+  "changes": [
+    {
+      "old_path": ".gitignore",
+      "new_path": ".gitignore",
+      "deletions": {
+        "human": 3
+      }
+    },
+    {
+      "old_path": "AGENTS.md",
+      "new_path": "AGENTS.md",
+      "additions": {
+        "human": 54
+      },
+      "deletions": {
+        "human": 136
+      }
+    },
+    {
+      "old_path": "CONTRIBUTING.md",
+      "deletions": {
+        "human": 19
+      }
+    },
+    {
+      "old_path": "README.md",
+      "new_path": "README.md",
+      "additions": {
+        "human": 9
+      },
+      "deletions": {
+        "human": 8
+      }
+    },
+    {
+      "old_path": "docs/brand-assets.json",
+      "deletions": {
+        "human": 25
+      }
+    },
+    {
+      "old_path": "docs/evaluation-media.json",
+      "deletions": {
+        "human": 110
+      }
+    },
+    {
+      "old_path": "docs/getting-started.md",
+      "deletions": {
+        "human": 92
+      }
+    },
+    {
+      "old_path": "docs/project-page.md",
+      "deletions": {
+        "human": 180
+      }
+    },
+    {
+      "old_path": "docs/skills-maintenance.md",
+      "new_path": "skills/MAINTENANCE.md",
+      "additions": {
+        "human": 27
+      },
+      "deletions": {
+        "human": 7
+      }
+    },
+    {
+      "old_path": "references.bib",
+      "deletions": {
+        "human": 23
+      }
+    },
+    {
+      "old_path": "scripts/build_project_page.py",
+      "deletions": {
+        "human": 78
+      }
+    },
+    {
+      "old_path": "scripts/check_project_page.py",
+      "deletions": {
+        "human": 162
+      }
+    },
+    {
+      "old_path": "scripts/tests/test_demo_motion.mjs",
+      "deletions": {
+        "human": 75
+      }
+    },
+    {
+      "old_path": "site/ai-guide.json",
+      "deletions": {
+        "human": 158
+      }
+    },
+    {
+      "old_path": "site/citations.json",
+      "deletions": {
+        "human": 4
+      }
+    },
+    {
+      "old_path": "site/demo-motion.mjs",
+      "deletions": {
+        "human": 58
+      }
+    },
+    {
+      "old_path": "site/index.html",
+      "deletions": {
+        "human": 173
+      }
+    },
+    {
+      "old_path": "site/main.js",
+      "deletions": {
+        "human": 134
+      }
+    },
+    {
+      "old_path": "site/media.json",
+      "deletions": {
+        "human": 14
+      }
+    },
+    {
+      "old_path": "site/public/AGENTS.md",
+      "deletions": {
+        "human": 23
+      }
+    },
+    {
+      "old_path": "site/public/README.md",
+      "deletions": {
+        "human": 47
+      }
+    },
+    {
+      "old_path": "site/styles.css",
+      "deletions": {
+        "human": 1036
+      }
+    }
+  ]
+}
