@@ -1,0 +1,38 @@
+AGENTS.md
+  h_e83ad249497173 21-22
+README.md
+  h_e83ad249497173 18-24
+---
+{
+  "schema_version": "authorship/3.1.0",
+  "tlab_version": "0.14.2",
+  "base_commit_sha": "7d76c0ee19268aafd197842f2c017e0bc9cb7214",
+  "prompts": {},
+  "humans": {
+    "h_e83ad249497173": {
+      "author": "jonasdee <yangwendisheng@agibot.com>"
+    }
+  },
+  "changes": [
+    {
+      "old_path": "AGENTS.md",
+      "new_path": "AGENTS.md",
+      "additions": {
+        "human": 2
+      },
+      "deletions": {
+        "human": 2
+      }
+    },
+    {
+      "old_path": "README.md",
+      "new_path": "README.md",
+      "additions": {
+        "human": 7
+      },
+      "deletions": {
+        "human": 3
+      }
+    }
+  ]
+}
