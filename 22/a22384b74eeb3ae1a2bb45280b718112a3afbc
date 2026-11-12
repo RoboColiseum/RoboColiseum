@@ -1,0 +1,58 @@
+AGENTS.md
+  h_e83ad249497173 7-9,11-29,70,72-76
+README.md
+  h_e83ad249497173 2-8,12-16,20,25-28,30-38,40,42,44-56,58-140,142,144-145,147-152,154,156-157,159-163,165,167-168,170-174,176-236,238-249,251,253-257,259-263,265-298,300-301,303-317,319,321,323-326,328-329,331
+assets/readme/provenance.json
+  h_e83ad249497173 1-33
+skills/MAINTENANCE.md
+  h_e83ad249497173 136-146
+---
+{
+  "schema_version": "authorship/3.1.0",
+  "tlab_version": "0.14.2",
+  "base_commit_sha": "22a22384b74eeb3ae1a2bb45280b718112a3afbc",
+  "prompts": {},
+  "humans": {
+    "h_e83ad249497173": {
+      "author": "jonasdee <yangwendisheng@agibot.com>"
+    }
+  },
+  "changes": [
+    {
+      "new_path": "assets/readme/provenance.json",
+      "additions": {
+        "human": 33
+      }
+    },
+    {
+      "old_path": "AGENTS.md",
+      "new_path": "AGENTS.md",
+      "additions": {
+        "human": 28
+      },
+      "deletions": {
+        "human": 12
+      }
+    },
+    {
+      "old_path": "README.md",
+      "new_path": "README.md",
+      "additions": {
+        "human": 293
+      },
+      "deletions": {
+        "human": 102
+      }
+    },
+    {
+      "old_path": "skills/MAINTENANCE.md",
+      "new_path": "skills/MAINTENANCE.md",
+      "additions": {
+        "human": 11
+      },
+      "deletions": {
+        "human": 18
+      }
+    }
+  ]
+}
