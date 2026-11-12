@@ -1,0 +1,51 @@
+AGENTS.md
+  h_e83ad249497173 8,27-30
+README.md
+  h_e83ad249497173 11-16
+assets/logo/affiliations.json
+  h_e83ad249497173 1-237
+assets/logo/affiliations.svg
+  h_e83ad249497173 1-85
+---
+{
+  "schema_version": "authorship/3.1.0",
+  "tlab_version": "0.14.2",
+  "base_commit_sha": "345aaea1f0882a2b3e2f5a03ceabed8e84e0b50d",
+  "prompts": {},
+  "humans": {
+    "h_e83ad249497173": {
+      "author": "jonasdee <yangwendisheng@agibot.com>"
+    }
+  },
+  "changes": [
+    {
+      "new_path": "assets/logo/affiliations.json",
+      "additions": {
+        "human": 237
+      }
+    },
+    {
+      "new_path": "assets/logo/affiliations.svg",
+      "additions": {
+        "human": 85
+      }
+    },
+    {
+      "old_path": "AGENTS.md",
+      "new_path": "AGENTS.md",
+      "additions": {
+        "human": 5
+      },
+      "deletions": {
+        "human": 1
+      }
+    },
+    {
+      "old_path": "README.md",
+      "new_path": "README.md",
+      "additions": {
+        "human": 6
+      }
+    }
+  ]
+}
