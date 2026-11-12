@@ -1,0 +1,50 @@
+AGENTS.md
+  h_e83ad249497173 19,30-32,40
+README.md
+  h_e83ad249497173 18
+assets/readme/provenance.json
+  h_e83ad249497173 4
+---
+{
+  "schema_version": "authorship/3.1.0",
+  "tlab_version": "0.14.2",
+  "base_commit_sha": "ec487573a8100292793724d4c9fc4a0d45b79026",
+  "prompts": {},
+  "humans": {
+    "h_e83ad249497173": {
+      "author": "jonasdee <yangwendisheng@agibot.com>"
+    }
+  },
+  "changes": [
+    {
+      "old_path": "AGENTS.md",
+      "new_path": "AGENTS.md",
+      "additions": {
+        "human": 5
+      },
+      "deletions": {
+        "human": 4
+      }
+    },
+    {
+      "old_path": "README.md",
+      "new_path": "README.md",
+      "additions": {
+        "human": 1
+      },
+      "deletions": {
+        "human": 37
+      }
+    },
+    {
+      "old_path": "assets/readme/provenance.json",
+      "new_path": "assets/readme/provenance.json",
+      "additions": {
+        "human": 1
+      },
+      "deletions": {
+        "human": 21
+      }
+    }
+  ]
+}
