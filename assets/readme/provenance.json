@@ -1,13 +1,29 @@
 {
   "source": "https://robocoliseum.ai/",
   "credit": "RoboColiseum",
-  "purpose": "Original RoboColiseum logo used by the repository README.",
+  "purpose": "RoboColiseum branding and the overview video preview used by the repository README.",
   "retrieved_on": "2026-11-12",
   "files": [
     {
       "path": "assets/readme/robocoliseum-logo.png",
       "source_url": "https://sim-challenge-frontend.ks3-cn-beijing.ksyuncs.com/img/ui/header-logo-light-dcccb361c3.png",
       "sha256": "dcccb361c391225b385e66e12524f73f16e3f21d5f46a27f66bcd9a2202554f2"
+    },
+    {
+      "path": "assets/welcome.jpg",
+      "source": "User-provided repository asset",
+      "sha256": "0de9405a9710de07ae38828a43757a86c18bb04a5f49e682315efc67b9165f24",
+      "dimensions": {
+        "width": 2298,
+        "height": 1291
+      }
+    },
+    {
+      "path": "assets/readme/welcome-preview.svg",
+      "derived_from": "assets/welcome.jpg",
+      "sha256": "03d2657d61db18e20449d4dbcef67732f46020495d4de7df3c358b7a537f78b9",
+      "transformation": "Unchanged JPEG embedded in SVG with a centered circular vector play button; original aspect ratio preserved.",
+      "video_url": "https://sim-challenge-frontend.ks3-cn-beijing.ksyuncs.com/video/robocoliseum/robocoliseum-2.0-1080p-8d59d193b2fb.mp4"
     }
   ]
 }

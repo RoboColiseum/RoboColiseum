@@ -5,8 +5,9 @@
 This private repository is the maintained entry point for RoboColiseum
 participation guides and AI-assistant skills. Keep it focused on `README.md`,
 this guide, `skills/`, and the small image set used by the README in
-`assets/readme/` and `assets/logo/`. The README is the single human-facing overview and onboarding
-guide; skills contain the detailed workflow instructions.
+`assets/readme/` and `assets/logo/`, plus the user-provided `assets/welcome.jpg`.
+The README is the single human-facing overview and onboarding guide; skills
+contain the detailed workflow instructions.
 
 Keep project-page sources and generated site bundles out of this repository.
 The separate `RoboColiseum/RoboColiseum.github.io` repository is private and
@@ -29,7 +30,10 @@ README onboarding, images, downloads, or citations through that site.
 - Store only images actually used by the README in `assets/readme/`, with
   original URLs and hashes in `assets/readme/provenance.json`. Link track
   discovery to the official task definitions; keep the README free of track
-  showcase galleries and demo-video links.
+  showcase galleries. The single overview video uses `assets/welcome.jpg`
+  through `assets/readme/welcome-preview.svg`, which embeds the unchanged JPEG
+  with a vector play button. Preserve the source image and aspect ratio; keep
+  its linked preview responsive on GitHub.
 - Affiliations use the user-provided originals in `assets/logo/`. Preserve the
   overall left-to-right sequence, checksums, and layout recorded in
   `assets/logo/affiliations.json`. Row breaks may change to balance logo

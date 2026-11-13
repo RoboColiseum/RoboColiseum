@@ -10,6 +10,12 @@
 </p>
 
 <p align="center">
+  <a href="https://sim-challenge-frontend.ks3-cn-beijing.ksyuncs.com/video/robocoliseum/robocoliseum-2.0-1080p-8d59d193b2fb.mp4" title="Start the RoboColiseum overview video">
+    <img src="assets/readme/welcome-preview.svg" alt="Play the RoboColiseum overview video" width="800">
+  </a>
+</p>
+
+<p align="center">
   <img src="assets/logo/affiliations.svg" alt="Logos: Beihang University; Beijing Institute of Technology; Fudan University; Harbin Institute of Technology; Hugging Face; Imperial College London; Karlsruhe Institute of Technology; ManiFormer; NVIDIA; Peking University; Shanghai Jiao Tong University; Stanford University; The Chinese University of Hong Kong; The Hong Kong University of Science and Technology (Guangzhou); The University of Hong Kong; Tongji University; Tsinghua University; University of Illinois Urbana-Champaign; University of Pennsylvania; Zhejiang University." width="960">
 </p>
 
