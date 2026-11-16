@@ -22,9 +22,10 @@ curl -fsS "$BASE_URL/api/challenge/job/$JOB_ID/log" \
 
 - `failure_reason` must be `9`. If it is `1`/`3`/`4`, this is **not** a connection problem —
   go to `challenge-troubleshoot` row 8.
-- Newer platform builds append the last disconnect type and the number of disconnects to
-  `result.error`, and put the simulator's last output in `result.stdout`. Older ones only say
-  `reconnect window expired`. Quote what is actually there; don't assume the newer format.
+- `result.error` reads `tunnel lost: reconnect window expired` (or `tunnel lost: liveness probe: …`),
+  followed by `(last disconnect: …; N disconnect(s) during this run)` when the platform has a
+  disconnect history for that run. `result.stdout` carries the simulator's last output when it
+  could be captured. Quote what is actually there.
 
 ## Step 1 — Classify the disconnects from YOUR logs
 
@@ -36,10 +37,11 @@ side:
 | `close 1006` / `no close frame received or sent` / `unexpected EOF` / connection reset | The connection ended **without a close frame**. 1006 is a placeholder the WebSocket library invents for that situation — it is **not** a code the other side sent and it carries **no cause** | Step 2, 3, and "Step 1b" below |
 | `close 1011` / `keepalive ping timeout` | Your client closed the connection because a ping it sent got no pong within its `ping_timeout` (that is what the message says; the library docs do not document the close code, so go by the message text) | Step 2, 3 |
 | `close 1000` / `1001` you did not intend | Your code (or a wrapper/supervisor) closed the connection | Step 4 |
+| Platform side shows `server_write_error` (in `result.error`: "the gateway could not write to your agent in time") | The gateway could not push a frame to you within its write window — the downstream link stalled while a large observation frame was in flight | Step 3 |
 | Process exit (`returncode`, supervisor restart) | Your process died or was killed | Step 4 |
 
 Two facts about the gateway that matter (full detail: appendix A.5/A.6 of `challenge-run-agent`):
-it pings every 20 s and drops the connection after **45 s without a pong**; after any drop you have
+it pings every 20 s and drops the connection after **45 s with no inbound bytes** (pongs, pings and frames all count); after any drop you have
 **30 s** to reconnect with the same `agent_id`. Short blips that reconnect inside 30 s are harmless —
 a failure means one outage (or a reconnect that came late) exceeded the window.
 
@@ -98,6 +100,7 @@ separate process) lets the loop keep answering pings. No spikes → this is not 
 **(b) Is the link lossy?** Run the bundled probe from the machine that runs the agent:
 
 ```bash
+# gateway host = host part of TUNNEL_ENDPOINT (the job response's tunnel_endpoint)
 bash scripts/probe_gateway.sh            # ICMP loss/rtt, 20x GET /health, mtr if installed
 ```
 
@@ -118,7 +121,8 @@ send to receipt. And watch the link while a frame is in flight:
 
 ```bash
 # Linux: live per-connection TCP stats to the gateway (rtt, retrans, delivery_rate, cwnd)
-watch -n 1 "ss -ti dst 120.92.88.78"
+GW_HOST="${TUNNEL_ENDPOINT#*://}"; GW_HOST="${GW_HOST%%/*}"; GW_HOST="${GW_HOST%%:*}"
+watch -n 1 "ss -ti dst $GW_HOST"
 
 # whole-NIC throughput while a frame is arriving (is something else eating the uplink/downlink?)
 sar -n DEV 1        # or: ifstat 1 / nload
@@ -134,8 +138,7 @@ Read it like this (these are things to suspect, not proof — confirm with a sec
 | A frame takes longer than the gateway's read deadline, then the drop follows | Heartbeat starvation; a client-side `ping_timeout` change cannot lengthen the gateway's deadline, so a transfer that slow needs a faster path |
 | Frames arrive in a few seconds, drops still happen | Bandwidth is unlikely to be the cause — back to Step 1b, Step 2(a) or Step 4 |
 
-What **you** can change in the client: if you set `ping_timeout` to a small value (the appendix
-example uses `10`), your client will itself abort whenever a pong is late by that much — including
+What **you** can change in the client: if you set `ping_timeout` to a small value, your client will itself abort whenever a pong is late by that much — including
 while a big frame is still arriving. For Python `websockets`, its own documentation says setting
 `ping_timeout=None` "disables only timeouts. This enables keepalive, to keep idle connections open,
 and disables heartbeat, to support large latency spikes", and suggests raising it if traffic spikes

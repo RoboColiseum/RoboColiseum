@@ -2,14 +2,16 @@
 name: challenge-download-datasets
 description: >
   Download the Simulation Challenge LeRobot v2.1 training datasets from ModelScope using
-  ./scripts/download_dataset.sh. Pulls task-suite data (instruction / manipulation / sim2real) from
+  ./scripts/download_dataset.sh. Pulls task-suite data (instruction / manipulation / sim2real /
+  cross_embodiment_transfer / dexterous_manipulation / precision_manipulation /
+  whole_body_coordination) from
   the agibot_world/GenieSim3.0-Dataset repo into a local dir. Trigger: When the user asks to
-  "下载训练数据", "下载数据集", "拉取 lerobot 数据", "download training data", "download the dataset",
+  "download training data", "download the dataset", "fetch LeRobot data",
   "get the lerobot v2.1 data", "download task suite", mentions download_dataset.sh, ModelScope
   GenieSim3.0-Dataset, or needs training data to train a challenge model.
 metadata:
   author: zy
-  version: "1.0"
+  version: "1.1"
 ---
 
 # challenge-download-datasets — Fetch LeRobot v2.1 training data
@@ -44,6 +46,10 @@ command -v modelscope >/dev/null || pip install modelscope
 | `instruction`  | `task_suite/instruction/**`  | instruction-following demos |
 | `manipulation` | `task_suite/manipulation/**` | manipulation demos |
 | `sim2real`     | `task_suite/sim2real/**`     | sim2real demos |
+| `cross_embodiment_transfer` | `task_suite/cross_embodiment_transfer/**` | cross-embodiment transfer demos |
+| `dexterous_manipulation` | `task_suite/dexterous_manipulation/**` | dexterous manipulation demos |
+| `precision_manipulation` | `task_suite/precision_manipulation/**` | precision manipulation demos |
+| `whole_body_coordination` | `task_suite/whole_body_coordination/**` | whole-body coordination demos |
 
 Each suite is downloaded in **LeRobot v2.1** format.
 
@@ -61,7 +67,13 @@ SCRIPT="$(dirname "$0")/scripts/download_dataset.sh"   # or hard-code this skill
 # Download a suite to a custom base dir → /path/to/save/sim2real/
 "$SCRIPT" sim2real /path/to/save
 
-# Download ALL suites (instruction + manipulation + sim2real)
+# Download other suites to a custom base dir
+"$SCRIPT" cross_embodiment_transfer /path/to/save
+"$SCRIPT" dexterous_manipulation /path/to/save
+"$SCRIPT" precision_manipulation /path/to/save
+"$SCRIPT" whole_body_coordination /path/to/save
+
+# Download ALL seven suites
 "$SCRIPT"
 
 # Help
@@ -77,12 +89,12 @@ downloads to a temp dir first, then copies `task_suite/<suite>/` contents into t
 
 ## Notes
 
-- **Pick a suite to limit size** — omitting `SUITE_NAME` downloads all three, which is large. Prefer
+- **Pick a suite to limit size** — omitting `SUITE_NAME` downloads all seven, which is large. Prefer
   naming the specific suite the user needs.
 - **Resumable:** `modelscope download` caches/resumes; re-running after an interruption continues
   rather than restarting from scratch.
-- **Invalid suite names fail fast** — the script only accepts `instruction`, `manipulation`,
-  `sim2real`; anything else exits with the valid list.
+- **Invalid suite names fail fast** — the script only accepts the seven names in the table above;
+  anything else exits with the valid list.
 - **Disk + network:** downloads can be tens of GB. Run with `run_in_background` if driving from the
   assistant so the session stays responsive, and confirm the target disk has room first.
 - After data is in place, training is out of scope for this skill — see `challenge-baseline-model`

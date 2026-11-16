@@ -2,7 +2,9 @@
 
 A set of stage-by-stage skills that let an AI assistant (Claude Code, Cursor, Copilot, Cline, …) walk a contestant through the full submission flow: **login → submit job → launch inference agent → poll result → check ranking**.
 
-`challenge-submit-job` returns a `job_token`; `challenge-run-agent` uses it (falling back to the login token `CHALLENGE_TOKEN` if unset) to dial the tunnel — it is scoped to the job and does not expire.
+`challenge-submit-job` returns a `job_token`; `challenge-run-agent` uses it to dial the tunnel — it is scoped to the job and does not expire. The login token `CHALLENGE_TOKEN` is also accepted for the dial.
+
+Already have an inference service that works with your simulator? Use [challenge-route-inference](./challenge-route-inference/SKILL.md) to reuse it through multiple tunnel routes, with separate state for each job. Its route helpers and protocol client are bundled in that skill folder.
 
 Two job identifiers come out of a submission and are **not** interchangeable: the numeric `JOB_ID`
 (`.id`) addresses every HTTP endpoint (`/job/{id}/result`, `/log`), while `JOB_UUID` (`.uuid`) is
@@ -10,25 +12,26 @@ used only for the WebSocket tunnel dial.
 
 ## Local benchmark setup
 
-The bundle contains **11 website-imported participation skills** and the
-repository-maintained [local-benchmark](local-benchmark/SKILL.md) skill.
-Use the local skill to prepare a Genie Sim checkout, CLI, simulation assets,
-Docker runtime, and ROS workspace. Its Python helper checks host prerequisites
-without installing packages or launching the simulator. Local setup uses no
-platform account or challenge credential state.
+The bundle contains **12 participation skills imported from the Genie Sim
+repository** and the repository-maintained [local-benchmark](local-benchmark/SKILL.md)
+skill. Use the local skill to prepare a separate Genie Sim checkout, CLI,
+simulation assets, Docker runtime, and ROS workspace. Its Python helper checks
+host prerequisites without installing packages or launching the simulator.
+Local setup uses no platform account or challenge credential state.
 
-Example: *"Use local-benchmark to prepare my Genie Sim environment for a
-headless local evaluation. Reuse my existing checkout and inspect it first."*
-
-Keep the complete `local-benchmark/` folder, including `scripts/`, when
-copying it into an assistant's skills directory. `UPSTREAM.json` records the
-website payload; `LOCAL.json` records the additional skill and its sources.
+Keep the complete `local-benchmark/` folder, including `scripts/`, when copying it
+into an assistant's skills directory. `UPSTREAM.json` records the imported
+payload and intentional local changes; `LOCAL.json` records the local skill.
 
 ## How to use
 
-1. Copy the file(s) you need into your AI tool's skill / system-prompt directory, or paste the content into a system-prompt slot.
+1. Copy each skill folder you need, including its `scripts/` and `references/` resources, into your
+   AI tool's skill directory. Keep related skill folders together so cross-skill links resolve.
+   The simulator inference protocol is included under `challenge-route-inference/references/`.
 2. Tell the assistant the stage you want, e.g. *"use challenge-submit-job to submit a model"*.
-3. The assistant will follow the skill: it asks for missing parameters, runs commands, and **always prompts before irreversible actions** (job submission, agent launch).
+3. The assistant follows the skill, gathers missing parameters, and runs the authorized workflow.
+   It explains submission costs and route allocations before taking external actions, and requests
+   any missing authorization without repeating approval already given for the concrete plan.
 
 The hosted `challenge-*` skills use the following environment variables; the assistant should help you set them up if missing:
 
@@ -40,7 +43,7 @@ export PASSWORD="your-password"
 
 ## State file (cross-shell persistence)
 
-`CHALLENGE_TOKEN` and the job-scoped variables (`JOB_ID` / `JOB_UUID` / `PARALLELISM` / `TUNNEL_ENDPOINT` / `JOB_TOKEN`) are **persisted to disk** at:
+`CHALLENGE_TOKEN` and the job-scoped variables (`JOB_ID` / `JOB_UUID` / `PARALLELISM` / `TUNNEL_ENDPOINT` / `JOB_TOKEN` / `JOB_SEASON`) are **persisted to disk** at:
 
 ```
 ~/.simubotix-challenge.env       # mode 0600
@@ -90,9 +93,9 @@ rm -f ~/.simubotix-challenge.env
 challenge_reset_job() {
   local f=~/.simubotix-challenge.env
   [ -f "$f" ] || return 0
-  awk '$0 !~ /^(JOB_ID|JOB_UUID|JOB_TOKEN|PARALLELISM|TUNNEL_ENDPOINT)=/' "$f" > "$f.tmp" && mv "$f.tmp" "$f"
+  awk '$0 !~ /^(JOB_ID|JOB_UUID|JOB_TOKEN|PARALLELISM|TUNNEL_ENDPOINT|JOB_SEASON)=/' "$f" > "$f.tmp" && mv "$f.tmp" "$f"
   chmod 600 "$f"
-  unset JOB_ID JOB_UUID JOB_TOKEN PARALLELISM TUNNEL_ENDPOINT
+  unset JOB_ID JOB_UUID JOB_TOKEN PARALLELISM TUNNEL_ENDPOINT JOB_SEASON
 }
 ```
 
@@ -100,13 +103,14 @@ Skills will detect the missing file (or missing keys) and re-run the producer sk
 
 ### Multi-job caveat (single-file design)
 
-The state file holds **one job at a time**. `challenge-submit-job` rewrites `JOB_ID` / `JOB_UUID` / `PARALLELISM` / `TUNNEL_ENDPOINT` / `JOB_TOKEN` on every submission, so the previous job's vars are lost.
+The state file holds **one job at a time**. `challenge-submit-job` rewrites `JOB_ID` / `JOB_UUID` / `PARALLELISM` / `TUNNEL_ENDPOINT` / `JOB_TOKEN` / `JOB_SEASON` on every submission, so the previous job's vars are lost. `challenge-route-inference` keeps a per-job copy of this file for each job it connects.
 
 If you need to track an older job after submitting a new one, fetch it back from history rather than expecting the state file to remember it:
 
 ```bash
-curl -fsS "$BASE_URL/api/challenge/jobs?page=1&per-page=20" \
+curl -fsS "$BASE_URL/api/challenge/jobs?season=1&page=1&per-page=20" \
   -H "Authorization: Bearer $CHALLENGE_TOKEN" | jq
+# Season II jobs: season=2. The list is per season; omitted = 2.
 ```
 
 `challenge-submit-job` Step 3 will explicitly call this out and ask for confirmation before overwriting unfinished job state.
@@ -118,20 +122,21 @@ curl -fsS "$BASE_URL/api/challenge/jobs?page=1&per-page=20" \
 | [`local-benchmark/`](./local-benchmark/SKILL.md) | Prepare and verify a local Genie Sim benchmark environment; includes a read-only host preflight. |
 | [`challenge-help/`](./challenge-help/SKILL.md) | Entry point — pick the right skill for the user's intent. |
 | [`challenge-login/`](./challenge-login/SKILL.md) | Get / refresh the JWT (`CHALLENGE_TOKEN`) and inspect the current user. |
-| [`challenge-submit-job/`](./challenge-submit-job/SKILL.md) | Build the request body, check daily quota, POST `/api/challenge/job`, capture `JOB_ID` / `JOB_UUID` / `PARALLELISM` / `TUNNEL_ENDPOINT` / `JOB_TOKEN`. |
-| [`challenge-run-agent/`](./challenge-run-agent/SKILL.md) | Launch the inference agent. The supported invocation is `./scripts/tunnel.sh <gpu> <job_uuid> <endpoint>` from the **inference repo** (see `challenge-baseline-model`); contestants running their own client implement the tunnel protocol, which is inlined in this skill's appendix. Scale to `PARALLELISM` processes. Dials the tunnel with `JOB_TOKEN` (falling back to the login token `CHALLENGE_TOKEN` if unset). |
+| [`challenge-submit-job/`](./challenge-submit-job/SKILL.md) | Build the request body, check daily quota, POST `/api/challenge/job`, capture `JOB_ID` / `JOB_UUID` / `PARALLELISM` / `TUNNEL_ENDPOINT` / `JOB_TOKEN` / `JOB_SEASON`. Also submits a finished Season II job for review. |
+| [`challenge-run-agent/`](./challenge-run-agent/SKILL.md) | Launch the inference agent. The supported invocation is `./scripts/tunnel.sh <gpu> <job_uuid> <endpoint>` from the **inference repo** (see `challenge-baseline-model`); contestants running their own client implement the tunnel protocol, which is inlined in this skill's appendix. Scale to `PARALLELISM` processes. Dials the tunnel with `JOB_TOKEN` (the login token `CHALLENGE_TOKEN` is also accepted). |
+| [`challenge-route-inference/`](./challenge-route-inference/SKILL.md) | Reuse an already working simulation inference service: one or multiple services → multiple transparent routes → official tunnel evaluation. Includes real-request readiness probes, per-job state, new/resumed jobs, route scaling/status/stop, custom adapters, and the simulator inference protocol. Router processes do not load models; one model can serve several routes. |
 | [`challenge-poll-result/`](./challenge-poll-result/SKILL.md) | Poll `GET /api/challenge/jobs` for `detailed_status` until terminal; then `/job/$JOB_ID/result` for scores, `/log` on failure. |
-| [`challenge-ranking/`](./challenge-ranking/SKILL.md) | Fetch `best-score` and the leaderboard. |
+| [`challenge-ranking/`](./challenge-ranking/SKILL.md) | Fetch `best-score` and the leaderboards viewed by model type or combined (Season I, Season II, top 5). |
 | [`challenge-troubleshoot/`](./challenge-troubleshoot/SKILL.md) | Map a symptom to the likely cause and the next command to run. |
 | [`challenge-diagnose-connection/`](./challenge-diagnose-connection/SKILL.md) | Agent keeps disconnecting / `failure_reason: 9` / `tunnel lost`: read-only local checks (event-loop lag, link loss, large-frame throughput) to separate "my machine/network" from "the platform", plus what evidence to send the organizers. |
 | [`challenge-baseline-model/`](./challenge-baseline-model/SKILL.md) | Clone the inference repo, pull checkpoints, install deps, run the baseline agent. |
-| [`challenge-download-datasets/`](./challenge-download-datasets/SKILL.md) | Pull the LeRobot v2.1 training data from ModelScope. |
-| [`challenge-inference-protocol/`](./challenge-inference-protocol/SKILL.md) | The obs/action payload schema carried inside the tunnel's data frames. |
+| [`challenge-download-datasets/`](./challenge-download-datasets/SKILL.md) | Pull seven LeRobot v2.1 training suites from ModelScope, including cross-embodiment transfer, dexterous manipulation, precision manipulation, and whole-body coordination. |
+| [`challenge-download-assets/`](./challenge-download-assets/SKILL.md) | Obtain the simulator code, install its CLI, then selectively download and verify runtime assets by task or track. |
 
 ## Operating mode (hybrid)
 
 - **Read-only** calls (login, current-user-info, jobs/result/log, best-score, ranking, quota check) — the assistant runs them directly and reports back.
-- **Side-effecting** calls (submitting a job, launching agent processes, killing agents, refreshing token) — the assistant prints the exact command, names the consequence (consumes one daily submission slot; agents hold a `parallelism` slot), and waits for explicit confirmation.
+- **Side-effecting** calls (creating/reviewing jobs, launching/stopping agents or routes, refreshing a token) — establish the concrete plan and consequences (submission quota or concurrency slots) before acting. Honor explicit authorization already given; request approval only when it is missing for the intended action.
 
 The **daily submission cap is a platform setting, not a constant to memorize.** Every skill that
 mentions it reads `GET /api/challenge/submission/quota` and quotes the returned
@@ -144,11 +149,15 @@ so **they do not link to any file outside `skills/`**. Everything needed is inli
 
 - Tunnel wire protocol (dial, control frames, binary framing, state machine, reconnect, heartbeat)
   → appendix of `challenge-run-agent`.
-- Observation / action payload schema → `challenge-inference-protocol`.
+- Observation/action payload schema, embodiment routing, depth/calibration, history, EEF/chassis
+  control, and runtime-specific replies →
+  [`challenge-route-inference/references/protocol.md`](./challenge-route-inference/references/protocol.md).
+- Existing-service adapter hooks →
+  [`challenge-route-inference/references/adapters.md`](./challenge-route-inference/references/adapters.md).
 - API response shapes and status enums → `challenge-poll-result`.
 - Accepted `config.board` values → `challenge-submit-job` Step 2.
 
-There is **no official published Simulation SDK package**. The supported client is the inference
-repo's `./scripts/tunnel.sh`; anything else is a contestant-written client against the inlined
-protocol. Do not direct users at clients inside the platform's own repository — those are internal
+There is **no official published Simulation SDK package**. Model-loading agents use the inference
+repo's `./scripts/tunnel.sh`; existing services can use the helpers bundled with
+`challenge-route-inference`. Custom clients implement the documented tunnel and application protocols. Do not direct users at clients inside the platform's own repository — those are internal
 test tooling and unsupported.

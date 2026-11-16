@@ -90,8 +90,8 @@ Keep your model's inference environment available while following this workflow.
 | Step | What you do | Skills |
 | --- | --- | --- |
 | **01 · 🌱 Prepare** | Choose a track and prepare a baseline or your own model. | [Training data](skills/challenge-download-datasets/SKILL.md) · [Baseline setup](skills/challenge-baseline-model/SKILL.md) |
-| **02 · 🔌 Connect** | Sign in and check the observation/action interface. | [Login](skills/challenge-login/SKILL.md) · [Inference protocol](skills/challenge-inference-protocol/SKILL.md) |
-| **03 · 🚀 Evaluate** | Create a job and connect your inference service using its returned details. | [Submit a job](skills/challenge-submit-job/SKILL.md) · [Run inference](skills/challenge-run-agent/SKILL.md) |
+| **02 · 🔌 Connect** | Sign in and check the observation/action interface. | [Login](skills/challenge-login/SKILL.md) · [Inference protocol](skills/challenge-route-inference/references/protocol.md) |
+| **03 · 🚀 Evaluate** | Create a job and connect your inference service using its returned details. | [Submit a job](skills/challenge-submit-job/SKILL.md) · [Route an existing service](skills/challenge-route-inference/SKILL.md) · [Run a model-loading agent](skills/challenge-run-agent/SKILL.md) |
 | **04 · 📊 Review** | Track progress, inspect per-task scores, and compare results. | [Poll results](skills/challenge-poll-result/SKILL.md) · [Rankings](skills/challenge-ranking/SKILL.md) |
 
 ### 💬 Pick a prompt for your next step
@@ -114,10 +114,10 @@ weights, and training-data needs before starting setup.
 <summary><strong>🧠 I already have a model</strong></summary>
 
 ```text
-Read AGENTS.md. Use challenge-inference-protocol to inspect my model's
-observation and action interface, then challenge-help to plan its hosted
-evaluation. Identify integration changes and missing information before
-using challenge-submit-job and challenge-run-agent.
+Read AGENTS.md. Use challenge-route-inference and its bundled protocol
+reference to inspect my model's observation and action interface, then
+challenge-help to plan its hosted evaluation. Identify integration changes
+and missing information before using challenge-submit-job and connecting routes.
 ```
 
 </details>
@@ -195,21 +195,22 @@ the [hosted workflow](#hosted-evaluation) when you want a platform evaluation.
 
 ## 🧩 A skill for every next step
 
-The toolkit contains **11 website-imported participation skills** and the
-RoboColiseum-maintained **local-benchmark** skill, with **4 helper scripts**.
+The toolkit contains **12 participation skills imported from Genie Sim** and the
+RoboColiseum-maintained **local-benchmark** skill, with **9 helper scripts**.
 Each skill is a readable `SKILL.md` with a focused workflow.
 
 <details>
-<summary><strong>Browse all 12 skills</strong></summary>
+<summary><strong>Browse all 13 skills</strong></summary>
 
 | Goal | Skill |
 | --- | --- |
 | Find the right workflow | [challenge-help](skills/challenge-help/SKILL.md) |
 | Prepare Genie Sim locally | [local-benchmark](skills/local-benchmark/SKILL.md) |
+| Get simulation runtime assets | [challenge-download-assets](skills/challenge-download-assets/SKILL.md) |
 | Get training data | [challenge-download-datasets](skills/challenge-download-datasets/SKILL.md) |
 | Set up a baseline | [challenge-baseline-model](skills/challenge-baseline-model/SKILL.md) |
 | Sign in | [challenge-login](skills/challenge-login/SKILL.md) |
-| Understand observations and actions | [challenge-inference-protocol](skills/challenge-inference-protocol/SKILL.md) |
+| Reuse and scale inference services; inspect the protocol | [challenge-route-inference](skills/challenge-route-inference/SKILL.md) |
 | Create an evaluation | [challenge-submit-job](skills/challenge-submit-job/SKILL.md) |
 | Connect model inference | [challenge-run-agent](skills/challenge-run-agent/SKILL.md) |
 | Inspect progress and task scores | [challenge-poll-result](skills/challenge-poll-result/SKILL.md) |

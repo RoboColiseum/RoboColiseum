@@ -1,115 +1,80 @@
 # Skill maintenance
 
-## Website import
+## Current upstream
 
-The skill package was downloaded from the **Download skill.zip** link on the
-[official usage page](https://robocoliseum.ai/usage) on 2026-11-12:
-
-[Website archive](https://sim-challenge-frontend.ks3-cn-beijing.ksyuncs.com/downloads/skills.zip)
-
-Archive SHA-256:
+The hosted participation skills were synchronized on **2026-11-16** from the
+Genie Sim repository's `origin/main`:
 
 ```text
-6ab7e9f467db77b0081ba143316636741ea53051d4f78b0727b1673c0a80c036
+Repository: git@code.agibot.com:genie-sim/main.git
+Revision:   083793f238762d336ce8570d22118a60a6830875
+Directory:  source/geniesim_benchmark/skills/robocoliseum/
 ```
 
-The imported payload is 11 `SKILL.md` files, 3 shell helpers, and the shared
-README. macOS `__MACOSX` metadata was excluded. The archive itself is not
-committed. `skills/UPSTREAM.json` records the source and upstream/local
-SHA-256 hashes for every payload file.
+Map that directory directly to this repository's `skills/`. Import committed
+blobs from the pinned revision, rather than copying an unrelated working tree.
+`UPSTREAM.json` records the exact source and local SHA-256 of all 30 payload
+files. The payload includes 12 `challenge-*` skills, shared guides, three shell
+helpers, and five Python route helpers (including the isolated regression suite).
 
-The helper scripts and 9 of the 11 skill files are byte-for-byte copies of
-the website archive. The original import had two narrow corrections; the shared index and router
-also include the local skill integration described below. The skills
-have not been exercised against a live evaluation job as part of this import.
+The former `challenge-inference-protocol` skill is replaced by
+`challenge-route-inference/references/protocol.md`. Keep protocol and adapter
+references, route helpers, requirements, and agent metadata together when
+distributing `challenge-route-inference/`.
 
-## Latest verification
+## Intentional local changes
 
-Re-downloaded the archive from the URL above on **2026-11-12 at 05:46 UTC**.
-Its SHA-256 and all 15 payload files match the recorded upstream version;
-no upstream content changed. At that verification the maintained copies
-retained the two import corrections below. The later local-skill addition
-also updates the shared index and router, as recorded in the manifest. `skills/UPSTREAM.json` records `last_verified_at`
-separately from the original retrieval date.
+Three imported files differ from the pinned upstream; all other imported files
+are byte-for-byte copies:
 
-Validation covered archive integrity and safe paths, the exact file inventory,
-upstream and local hashes, all 11 skill frontmatter records, and `bash -n`
-for all 3 helpers. No live evaluation or downloaded helper was run.
+- `README.md` retains RoboColiseum branding and the `local-benchmark` entry.
+  Hosted credential setup applies only to the challenge skills. Its
+  `challenge_save_var` example preserves existing state, creates the file under
+  `umask 077`, and returns if file initialization or permissions fail.
+- `challenge-help/SKILL.md` routes complete local simulation environment setup
+  to `local-benchmark`, while asset-only requests use `challenge-download-assets`.
+- `benchmark-task-suite.md` describes paths in the separate simulator checkout
+  instead of linking outside the bundle. Its boards and dataset tables match
+  the imported submission and download skills: four Season I boards, Season II
+  `v2`, and seven dataset suites. The bundled baseline covers Season I only.
 
-## Local corrections
-
-### Preserve persisted state
-
-In the imported `skills/README.md`, the `challenge_save_var` example used:
-
-```bash
-install -m 600 /dev/null "$f" 2>/dev/null
-```
-
-That command empties an existing state file on every call, so saving the
-next job variable removes previously saved keys. The repository version
-replaces that initialization with:
-
-```bash
-(umask 077; touch "$f") || return 1
-chmod 600 "$f" || return 1
-```
-
-This preserves existing contents and creates a new file with private
-permissions. The login skill's helper already avoids the truncating
-`install` command. The repository correction was checked with synthetic
-state, sequential writes, spaces, quotes, and shell metacharacters.
-
-### Valid YAML metadata
-
-The website archive's `challenge-diagnose-connection/SKILL.md` has a plain
-YAML description containing `tunnel lost: reconnect`, which fails YAML
-parsing. Its description is now a folded YAML scalar; the description text
-and workflow body are preserved. All 11 skills pass the skill validator.
+Preserve these integrations during subsequent imports unless upstream provides
+equivalent behavior. Record every local departure and its hashes in
+`UPSTREAM.json`.
 
 ## Locally maintained benchmark skill
 
-`local-benchmark/` is authored in this repository and is distributed alongside
-the imported skills. It prepares the local Genie Sim environment and has a
-read-only Python host preflight. `skills/LOCAL.json` records its file hashes
-and inspected source contracts separately from the website archive.
+`local-benchmark/` is authored in this repository and distributed alongside the
+imported skills. It prepares a separate Genie Sim checkout and has a read-only
+host preflight. `LOCAL.json` records its original sources and file hashes. This
+import preserves the local skill, helper, and regression tests unchanged.
 
-The shared skills README and `challenge-help` router include this local path;
-those intentional departures are recorded in `UPSTREAM.json`. Preserve the
-local index/router integration and state/YAML corrections during reimports.
-The bundle now contains **12 skills and 4 helpers** (3 shell, 1 Python).
+The complete bundle contains **13 skills and 9 helper scripts**: three shell
+helpers, five imported Python route helpers, and one local Python preflight.
+`skills/tests/` is outside the distributed payload.
 
-Validate the local skill's helper without installing a simulator:
+## Validation
+
+Run the CPU-only local preflight regression tests and the imported route suite:
 
 ```bash
 python3 -m unittest discover -s skills/tests -p 'test_local_benchmark_preflight.py'
+python3 skills/challenge-route-inference/scripts/test_routes.py
 ```
 
-The tests simulate missing tools, denied Docker access, command timeouts,
-missing checkouts/assets, and host-only readiness. A real GPU/container/task
-smoke test must be reported separately when it is actually performed.
+The route suite requires the versions in
+`challenge-route-inference/scripts/requirements.txt`. It uses synthetic
+credentials, local temporary files, and loopback model/gateway/API servers.
+It does not contact the official platform or any running inference service.
+Do not run live probes, jobs, downloads, or inference as a documentation check.
 
-## Updating the package
+Also parse all skill YAML frontmatter, check relative Markdown links, compile
+Python helpers, run `bash -n` for the three shell helpers, and run
+`git diff --check`. Exercise changed shell examples in a temporary directory
+with synthetic state, spaces, quotes, and shell metacharacters. Saving one
+variable must preserve all other keys; clearing job state must retain login.
 
-1. Follow the current download link on the official usage page. Download to
-   a temporary directory and record the retrieval date and archive checksum.
-2. List archive entries before extracting. Import only `skills/` payload
-   files, excluding metadata. Reject absolute paths, parent traversal, and
-   links. Do not execute downloaded scripts during import.
-3. Compare the new payload with the tracked files and hashes. Review changes
-   to API paths, credentials, job IDs, quotas, inference protocol, and shell
-   commands. Reconcile the documented state-helper correction if upstream
-   has changed it; do not reintroduce truncation.
-4. Update `skills/UPSTREAM.json` with the new source hashes, local hashes,
-   retrieval date, and intentional local changes. Update the README skill
-   count and index when the inventory changes.
-5. Check relative Markdown links, matching skill folder/frontmatter names,
-   and helper script syntax with `bash -n`. For a changed command, test the
-   observable behavior in an isolated directory with synthetic inputs.
-6. Review `git diff --check` and the full import diff. Describe any local
-   departures from upstream in the update's pull request.
-
-To verify the recorded payload hashes from the repository root:
+Verify both payload manifests from the repository root:
 
 ```bash
 python3 - <<'PY'
@@ -118,43 +83,64 @@ import hashlib
 import json
 
 root = Path('skills')
-manifest = json.loads((root / 'UPSTREAM.json').read_text())
-for name, record in manifest['files'].items():
-    actual = hashlib.sha256((root / name).read_bytes()).hexdigest()
-    assert actual == record['local_sha256'], name
-print(f"Verified {len(manifest['files'])} imported payload files")
+for filename in ('UPSTREAM.json', 'LOCAL.json'):
+    manifest = json.loads((root / filename).read_text())
+    for name, record in manifest['files'].items():
+        actual = hashlib.sha256((root / name).read_bytes()).hexdigest()
+        assert actual == record['local_sha256'], name
+    print(f"Verified {len(manifest['files'])} files in {filename}")
 PY
 ```
 
-## Distribution
+Integrity checks prove file identity, not current API compatibility or a scored
+policy run. Report live verification separately when it is requested and done.
 
-Keep each `challenge-*` folder intact when copying skills into an assistant's
-skill directory. Preserve its `scripts/` subdirectory. For a participant's
-workflow, start with `challenge-help` and the shared setup in `skills/README.md`.
-A repository import does not install these skills into any user's assistant.
+## Updating the package
 
-The root README is the main human-facing guide. Both the entrypoint repository
-and the separate project-page repository are private; GitHub Pages is disabled
-on the organization's current plan. Do not depend on the old Pages address
-for skill downloads or onboarding.
+1. Fetch the source repository's `origin/main`, pin its full revision, and inspect
+   the tracked payload inventory before importing. Do not import credentials,
+   environments, outputs, or unrelated working-tree changes.
+2. Compare changes to endpoints, authorization, job IDs, quota handling, shell
+   persistence, and the inference protocol. Preserve helper resources and file
+   modes. Reject unsafe paths and unexpected links.
+3. Replace the imported payload, reconcile the local changes above, and remove
+   superseded imported files. Preserve `local-benchmark/`, its tests, and
+   `LOCAL.json` unless the requested change includes them.
+4. Update `UPSTREAM.json` with source revision, file inventory, upstream/local
+   hashes, date, and local departures. Update the root README and shared index
+   when skill names, resources, or counts change.
+5. Run the offline validation above and review the diff before committing.
 
-Maintain payload files and their `UPSTREAM.json` / `LOCAL.json` hashes here.
-If a skill bundle is needed, package only the files recorded by those two
-manifests, plus the manifests themselves. Preserve exact bytes and directory
-paths. Exclude this maintenance guide, tests, credentials, and OS metadata.
-Updating the evaluation website's hosted archive remains a separate publishing
-step; a repository import does not change that download.
+## Previous website import
 
-## Contributing
+The original bundle was downloaded on **2026-11-12** from the **Download
+skill.zip** link on the [official usage page](https://robocoliseum.ai/usage):
 
-Improve participation explanations, skill workflows, or resource links here.
-Open a pull request explaining what participants can do more easily, preserve
-the import corrections and manifests, check relevant helper syntax, and run
-`git diff --check`. Runtime and model implementation changes belong in the
-repositories linked from the root README. Page layout, media, and deployment
-changes belong in the project-page repository.
+[Website archive](https://sim-challenge-frontend.ks3-cn-beijing.ksyuncs.com/downloads/skills.zip)
 
-For account or evaluation questions, use the
-[community](https://robocoliseum.ai/community) or
-[support](mailto:support@robocoliseum.ai). Remove tokens, passwords, and private
-job credentials from shared troubleshooting logs.
+```text
+Archive SHA-256: 6ab7e9f467db77b0081ba143316636741ea53051d4f78b0727b1673c0a80c036
+Last checked:   2026-11-12T05:46:34Z
+```
+
+That import contained 11 skills, three shell helpers, and a shared README;
+macOS metadata was excluded. Local fixes preserved shell state and corrected
+invalid YAML metadata. Its source metadata is retained in `UPSTREAM.json` under
+`previous_import`; its full file records remain in Git history. The current
+source is the pinned repository revision above, not that website archive.
+
+## Distribution and contributions
+
+Keep each `challenge-*` and `local-benchmark/` folder intact, including scripts
+and references. Start with `challenge-help` and the shared `skills/README.md`.
+If packaging a bundle, include files recorded by `UPSTREAM.json` and `LOCAL.json`
+plus both manifests. Exclude this maintenance guide, local tests, credentials,
+evaluation artifacts, environments, weights, and OS metadata.
+
+The root README remains the human-facing onboarding guide. Keep this repository
+and the separate project-page repository private; do not route downloads through
+the disabled GitHub Pages site. A repository import does not update the hosted
+website archive or install skills into an assistant.
+
+For account questions, use the [community](https://robocoliseum.ai/community)
+or [support](mailto:support@robocoliseum.ai). Remove credentials from shared logs.
